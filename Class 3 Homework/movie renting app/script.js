@@ -1,4 +1,4 @@
-//Exercise 1
+
 
 let movies = ["Space Oddysey", "The Godfather", "Deadpool", "Mad Max", "Moonlight", "Get Out", "Inception", "Avatar", "Oppenheimer"]
 
@@ -29,7 +29,7 @@ findMovieButton.addEventListener("click", function () {
 })
 
 
-//Exercise 2
+
 
 
 
