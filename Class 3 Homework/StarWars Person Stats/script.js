@@ -32,7 +32,7 @@ function printingStats(name, height, weight, hairColor, eyeColor) {
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
 
-    cell1.innerText = height;
+    cell1.innerText = `${height}cm`;
     cell2.innerText = `${weight}kg`;
     cell3.innerText = hairColor;
     cell4.innerText = eyeColor;
@@ -54,9 +54,8 @@ printBtn.addEventListener("click", function () {
         .then(function (response) {
             console.log("call successful!");
             console.log(response);
-
-            printingStats(response.name, response.height, response.mass, response.hair_color, response.eye_color);
             
+            printingStats(response.name, response.height, response.mass, response.hair_color, response.eye_color);  
         })
         .catch(function (response) {
             console.log("the request has failed: " + response.status);
