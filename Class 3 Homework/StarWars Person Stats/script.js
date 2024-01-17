@@ -47,6 +47,8 @@ function printingStats(name, height, weight, hairColor, eyeColor) {
 }
 
 printBtn.addEventListener("click", function () {
+    result.innerHTML = "";
+
     fetch("https://swapi.dev/api/people/1 ")
         .then(function (response) {
             return response.json()
