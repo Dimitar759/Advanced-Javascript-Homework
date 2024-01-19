@@ -39,6 +39,7 @@ let positiveOrNegativeNumber = positiveOrNegative(12);
 console.log(positiveOrNegativeNumber);
 
 //A function that takes a number through a parameter and calls all three functions for the number that was passed. It should show the results in the console.
+
 allResults(-432);
 
 function allResults(number) {
@@ -50,6 +51,35 @@ function allResults(number) {
 
 }
 
+console.log("----------------------------------")
 
+//Exercise 2
+//
+let colorInput = document.getElementById("color");
+let textSizeInput = document.getElementById("textSize");
+let changeElementBtn = document.getElementById("changeH1");
+let h1Text = document.getElementById("h1text");
 
+let elementAndColor = (element, color) => {
+    if (color === "") {
+        element.style.color = "red";
+    } else {
+        element.style.color = color;
+    }
+}
 
+let elementAndTextSize = (element, textSize) => {
+    if (textSize === "") {
+        element.style.fontSize = "12px";
+    } else {
+        element.style.fontSize = `${textSize}px`;
+    }
+}
+
+changeElementBtn.addEventListener("click", () => {
+    let color = colorInput.value;
+    let textSize = textSizeInput.value;
+
+    elementAndColor(h1Text, color);
+    elementAndTextSize(h1Text, textSize);
+});
