@@ -62,7 +62,7 @@ let h1Text = document.getElementById("h1text");
 
 let elementAndColor = (element, color) => {
     if (color === "") {
-        element.style.color = "red";
+        element.style.color = "black";
     } else {
         element.style.color = color;
     }
@@ -70,7 +70,7 @@ let elementAndColor = (element, color) => {
 
 let elementAndTextSize = (element, textSize) => {
     if (textSize === "") {
-        element.style.fontSize = "12px";
+        element.style.fontSize = "24px";
     } else {
         element.style.fontSize = `${textSize}px`;
     }
