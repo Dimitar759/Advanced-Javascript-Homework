@@ -121,15 +121,67 @@ factorielBtn.addEventListener("click", () => {
     console.log(factorialResult);
 });
 
+////Exercise 5
 //
-// function factoriel(n) {
-//     // Base case: factorial of 0 is 1
-//     if (n === 0) {
-//         return 1;
-//     }
-//     // Recursive case: n! = n * (n-1)!
-//     return n * factoriel(n - 1);
-// }
 
-// let resultFactoriel = factoriel(500);
-// console.log(resultFactoriel);
+let randomText = document.getElementById("randomText");
+let reverseText = document.getElementById("reverseText");
+let reversedResult = document.getElementById("reversedResult");
+
+let reversing = (userText) => {
+    let textArray = userText.split("");
+    let reversedArray = textArray.reverse();
+    let joinArrayToString = reversedArray.join("");
+
+    return joinArrayToString
+}
+
+reverseText.addEventListener("click", () => {
+    reversedResult.innerHTML = "";
+    let text = randomText.value;
+
+    let result = reversing(text);
+
+    reversedResult.innerHTML += result;
+   
+});
+
+
+//Exercise 6
+let array = [-10, 5, 7894, NaN, 'Hello world', Infinity, false, [Object, Object], 25, name => `Hello ${name}`, -Infinity, ['hi', 28, -93, true], { name: 'Bob', age: 23, }, undefined, 14, null, 159, 0, -11];
+
+let filteredArray = [];
+
+let positiveNumbersProduct = function (randomArray) {
+    let multipliedNumbers = 1;
+    for (let i = 0; i < randomArray.length; i++) {
+        if (!isNaN(randomArray[i])) {
+            if (randomArray[i] > 0) {
+                filteredArray.push(randomArray[i])
+                multipliedNumbers = multipliedNumbers * randomArray[i]; // ova ke dava infinite, deka i infinite spagja vo positive number, ne beshe spomnato vo zadachata vo baranjeto dali treba da se trgne infinity inache ke napravev if statement za bez infinity no vaka spored baranjeto na domashnata sekogas ke e infinite!
+            }
+        }
+    }
+    console.log(filteredArray);
+    console.log(multipliedNumbers);
+}
+positiveNumbersProduct(array);
+
+//Exercise 7
+
+let stringche = "deoxyribonucleic acid";
+let vowels = "aeiou";
+let count = 0;
+
+let printVowels = inputString => {
+    for (let i = 0; i < inputString.length; i++) {
+        if (vowels.includes(inputString[i])) {
+            count++;
+        }
+    }
+};
+
+printVowels(stringche);
+
+console.log(`Number of vowels in "${stringche}": ${count}`);
+
