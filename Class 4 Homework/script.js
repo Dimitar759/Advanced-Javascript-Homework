@@ -83,3 +83,53 @@ changeElementBtn.addEventListener("click", () => {
     elementAndColor(h1Text, color);
     elementAndTextSize(h1Text, textSize);
 });
+
+//Exercise 3
+// An anonymous function that takes an array as a parameter and returns the square of each element.
+let arrayOfNums = [1, 2, 3, 4, 5];
+
+let numbers = function(arr) {
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        result.push(arr[i] * arr[i]);
+    }
+    return result;
+};
+
+let squaredArray = numbers(arrayOfNums);
+console.log(squaredArray);
+
+//Exercise 4
+//A self-invoked function that calculates the factorial of a given number and logs it to the console. BONUS: Provide the input from the HTML, and print the result in the HTML.
+
+let factorielBtn = document.getElementById("factoriel");
+let resultFactoriel = document.getElementById("result");
+
+factorielBtn.addEventListener("click", () => {
+    let userInput = document.getElementById("factorielNumber");
+    let factorielNumber = parseInt(userInput.value);
+
+    let factorialResult = (function calculateFactorial(number) {
+        if (number === 0) {
+            return 1;
+        } else {
+            return number * calculateFactorial(number - 1);
+        }
+    })(factorielNumber);
+
+    resultFactoriel.innerHTML += `The result is: ${factorialResult}`;
+    console.log(factorialResult);
+});
+
+//
+// function factoriel(n) {
+//     // Base case: factorial of 0 is 1
+//     if (n === 0) {
+//         return 1;
+//     }
+//     // Recursive case: n! = n * (n-1)!
+//     return n * factoriel(n - 1);
+// }
+
+// let resultFactoriel = factoriel(500);
+// console.log(resultFactoriel);
