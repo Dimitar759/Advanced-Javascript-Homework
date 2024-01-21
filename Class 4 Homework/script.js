@@ -105,13 +105,13 @@ console.log(squaredArray);
 
 // //Exercise 4
 // //A self-invoked function that calculates the factorial of a given number and logs it to the console. BONUS: Provide the input from the HTML, and print the result in the HTML.
-console.log("----------------------------------")
-console.log("Exercise 4 ")
+
 
 let factorielBtn = document.getElementById("factoriel");
 let resultFactoriel = document.getElementById("result");
 
 factorielBtn.addEventListener("click", () => {
+    resultFactoriel.innerHTML = ``;
     let userInput = document.getElementById("factorielNumber");
     let factorielNumber = parseInt(userInput.value);
 
@@ -124,7 +124,6 @@ factorielBtn.addEventListener("click", () => {
     })(factorielNumber);
 
     resultFactoriel.innerHTML += `The result is: ${factorialResult}`;
-    console.log(factorialResult);
 });
 
 // ////Exercise 5
@@ -186,13 +185,14 @@ let vowels = "aeiou";
 let count = 0;
 
 let printVowels = inputString => {
+    vowelsResult.innerHTML = "";
     for (let i = 0; i < inputString.length; i++) {
         if (vowels.includes(inputString[i])) {
             count++;
         }
     }
     console.log(`Number of vowels in "${stringche.value}": ${count}`);
-    vowelsResult.innerHTML += `Number of vowels in "${stringche.value}": ${count}`
+    vowelsResult.innerHTML += `Number of vowels in "${stringche.value}" is: ${count}`
 };
 
 vowelsBtn.addEventListener("click", () => {
