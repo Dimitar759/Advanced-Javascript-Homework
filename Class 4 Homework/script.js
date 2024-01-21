@@ -1,5 +1,7 @@
 //Exercise 1
 //Function that takes a number through a parameter and returns how many digits that number has
+console.log("----------------------------------")
+console.log("Exercise 1:")
 
 let digitsOfNumber = (number) => {
     let numberAsString = number.toString(); 
@@ -51,10 +53,10 @@ function allResults(number) {
 
 }
 
-console.log("----------------------------------")
+
 
 //Exercise 2
-//
+
 let colorInput = document.getElementById("color");
 let textSizeInput = document.getElementById("textSize");
 let changeElementBtn = document.getElementById("changeH1");
@@ -84,8 +86,10 @@ changeElementBtn.addEventListener("click", () => {
     elementAndTextSize(h1Text, textSize);
 });
 
-//Exercise 3
-// An anonymous function that takes an array as a parameter and returns the square of each element.
+// //Exercise 3
+// // An anonymous function that takes an array as a parameter and returns the square of each element.
+console.log("----------------------------------")
+console.log("Exercise 3:")
 let arrayOfNums = [1, 2, 3, 4, 5];
 
 let numbers = function(arr) {
@@ -99,8 +103,10 @@ let numbers = function(arr) {
 let squaredArray = numbers(arrayOfNums);
 console.log(squaredArray);
 
-//Exercise 4
-//A self-invoked function that calculates the factorial of a given number and logs it to the console. BONUS: Provide the input from the HTML, and print the result in the HTML.
+// //Exercise 4
+// //A self-invoked function that calculates the factorial of a given number and logs it to the console. BONUS: Provide the input from the HTML, and print the result in the HTML.
+console.log("----------------------------------")
+console.log("Exercise 4 ")
 
 let factorielBtn = document.getElementById("factoriel");
 let resultFactoriel = document.getElementById("result");
@@ -121,8 +127,8 @@ factorielBtn.addEventListener("click", () => {
     console.log(factorialResult);
 });
 
-////Exercise 5
-//
+// ////Exercise 5
+// //
 
 let randomText = document.getElementById("randomText");
 let reverseText = document.getElementById("reverseText");
@@ -147,7 +153,9 @@ reverseText.addEventListener("click", () => {
 });
 
 
-//Exercise 6
+// //Exercise 6
+console.log("----------------------------------")
+console.log("Exercise 6")
 let array = [-10, 5, 7894, NaN, 'Hello world', Infinity, false, [Object, Object], 25, name => `Hello ${name}`, -Infinity, ['hi', 28, -93, true], { name: 'Bob', age: 23, }, undefined, 14, null, 159, 0, -11];
 
 let filteredArray = [];
@@ -167,9 +175,13 @@ let positiveNumbersProduct = function (randomArray) {
 }
 positiveNumbersProduct(array);
 
-//Exercise 7
+// //Exercise 7
+console.log("----------------------------------")
+console.log("Exercise 7")
 
-let stringche = "deoxyribonucleic acid";
+let stringche = document.getElementById("randomInput");
+let vowelsBtn = document.getElementById("numberOfVowels");
+let vowelsResult = document.getElementById("vowelsResult");
 let vowels = "aeiou";
 let count = 0;
 
@@ -179,9 +191,15 @@ let printVowels = inputString => {
             count++;
         }
     }
+    console.log(`Number of vowels in "${stringche.value}": ${count}`);
+    vowelsResult.innerHTML += `Number of vowels in "${stringche.value}": ${count}`
 };
 
-printVowels(stringche);
+vowelsBtn.addEventListener("click", () => {
+    let userInput = stringche.value;
+    printVowels(userInput);
+})
 
-console.log(`Number of vowels in "${stringche}": ${count}`);
+
+
 
