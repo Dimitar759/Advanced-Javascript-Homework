@@ -4,12 +4,27 @@ console.log("----------------------------------")
 console.log("Exercise 1:")
 
 let digitsOfNumber = (number) => {
-    let numberAsString = number.toString(); 
-    let numberOfDigits = numberAsString.length;
+     let numberOfDigits = 0;
+
+    // Handle negative numbers
+    if (number < 0) {
+        number = -number;
+    }
+
+    // Special case for number equal to 0
+    if (number === 0) {
+        return 1;
+    }
+
+    while (number > 0) {
+        number = Math.floor(number / 10);
+        numberOfDigits++;
+    }
+
     return numberOfDigits;
 }
 
-let digits = digitsOfNumber(12345);
+let digits = digitsOfNumber(-1213);
 console.log(digits);
 
 //Function that takes a number through a parameter and returns if its even or odd
@@ -17,12 +32,12 @@ console.log(digits);
 let evenOrOdd = (number) => {
     if (number % 2 == 0) {
         return `This is an even number`
-    } else {
-        return `This is an odd number`
-    }
+    } 
+    return `This is an odd number`
+    
 }
 
-let evenOrOddNumber = evenOrOdd(13243);
+let evenOrOddNumber = evenOrOdd(263);
 console.log(evenOrOddNumber);
 
 //Function that takes a number through a parameter and returns if its positive or negative
@@ -32,9 +47,9 @@ let positiveOrNegative = (number) => {
         return `This is a positive number`
     } else if (number < 0) {
         return `This is a negative number`
-    } else if (number === 0) {
+    } 
         return `The number is 0, which isnt a negative or positive number!`
-    }
+    
 }
 
 let positiveOrNegativeNumber = positiveOrNegative(12);
