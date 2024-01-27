@@ -21,3 +21,4 @@ const firstGroceryItem = response => {
    let firstItemIndex = response.findIndex(product => product.category === "groceries");
   return firstItemIndex;
 }
+
