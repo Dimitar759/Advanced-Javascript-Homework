@@ -3,7 +3,6 @@ fetch("https://dummyjson.com/products")
   return response.json();
 })
   .then(function (response) {
-  console.log(response)
   console.log(laptopsDescendingByPrice(response.products));
   console.log(firstGroceryItem(response.products));
   console.log(firstSamsungSmartPhone(response.products));
