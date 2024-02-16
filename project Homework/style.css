@@ -1,0 +1,31 @@
+
+#navBar {
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+#beerBar{
+    font-weight: 400;
+    font-size: 25px;
+    
+}
+.nav-link{
+    font-size:larger;
+    font-weight: 400;
+}
+
+#main-page{
+    width: 80%;
+    margin: 60px auto;
+    background-color: rgb(234, 234, 234);
+    padding-bottom: 5rem;
+}
+
+#text{
+    margin: auto 5%;
+}
+
+#mainimg{
+    width: 90%;
+}
