@@ -1,6 +1,6 @@
 
 #navBar {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     
 }
@@ -15,9 +15,12 @@
     font-weight: 400;
 }
 
+.nav-link:hover{
+   cursor: pointer;
+}
 #main-page{
-    width: 80%;
-    margin: 60px auto;
+    width: 90%;
+    margin: 120px auto 10px auto ;
     background-color: rgb(234, 234, 234);
     padding-bottom: 5rem;
 }
@@ -29,3 +32,25 @@
 #mainimg{
     width: 90%;
 }
+
+.dropdown{
+    width: 90%;
+    margin: 60px auto;
+}
+
+#beersPerPagebtn{
+    margin-right: 20%;
+}
+
+#sortbtn{
+    margin-left: 20%;
+}
+
+.card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* truncate to 4 lines */
+    -webkit-line-clamp: 4;
+  }
+  
