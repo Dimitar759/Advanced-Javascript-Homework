@@ -20,7 +20,8 @@ function getBeers(data) {
             const beer = data[j];
 
             const col = document.createElement('div');
-            col.className = 'col-2 mx-auto gy-2';
+            col.className = 'col-2 mx-auto ';
+            col.style.margin = "0 0 40px 0"
 
             const card = document.createElement('div');
             card.className = 'card h-100';
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     beersLink.addEventListener('click', function(event) {
         event.preventDefault(); 
-
+        
         beersSection.scrollIntoView({ behavior: 'smooth' });
     });
 });
@@ -97,6 +98,8 @@ showTwentyBeers.addEventListener("click", function() {
 
 
 
+
+// Initial fetch and display of beers when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     fetchBeers();
 });

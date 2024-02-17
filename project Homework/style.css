@@ -33,21 +33,19 @@
     width: 90%;
 }
 
-.dropdown-container {
-    width: 90%;
-}
-
 #beers{
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .d-flex{
-    margin-bottom: 50px;
+    margin: 0 5% 50px 5%;
+    
 }
 .dropdown {
+    width: 90%;
     position: relative;
-    display: flex; /* Use flexbox to center the buttons */
-    justify-content: center; /* Center the buttons horizontally */
+    display: flex; 
+    justify-content: center; 
 }
 
 .dropdown-menu {
@@ -65,11 +63,13 @@
     margin-left: 40px; /* Optional: Add margin if needed */
 }
 
+
+
 .card-text {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     /* truncate to 4 lines */
     -webkit-line-clamp: 4;
-  }
+}
   
