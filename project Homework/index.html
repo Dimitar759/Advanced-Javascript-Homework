@@ -40,25 +40,30 @@
     </div>
     
     <div id="beers">
-        <div  class="dropdown d-flex justify-content-center bg-light">
-            <button class="btn btn-danger dropdown-toggle" type="button" id="beersPerPagebtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Beers per page
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" id="5">show 5</a>
-                <a class="dropdown-item" id="10">show 10</a>
-                <a class="dropdown-item" id="20">show 20</a>
+        <div class="d-flex justify-content-center align-items-center bg-light">
+            <div class="dropdown mr-3">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="beersPerPagebtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Beers per page
+                </button>
+                <div class="dropdown-menu" aria-labelledby="beersPerPagebtn">
+                    <a class="dropdown-item" id="5">show 5</a>
+                    <a class="dropdown-item" id="10">show 10</a>
+                    <a class="dropdown-item" id="20">show 20</a>
+                </div>
             </div>
-            <button class="btn btn-danger dropdown-toggle" type="button" id="sortbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort by
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" id="nameASC">Name ASC</a>
-                <a class="dropdown-item" id="nameDESC">Name DESC</a>
-                <a class="dropdown-item" id="alcoholASC">Alcohol % ASC</a>
-                <a class="dropdown-item" id="alcoholDESC">Alcohol % DESC</a>
-                <a class="dropdown-item" id="bitternessASC">Bitterness ASC</a>
-                <a class="dropdown-item" id="bitternessDESC">Bitterness DESC</a>
+        
+            <div class="dropdown">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="sortbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort by
+                </button>
+                <div class="dropdown-menu" aria-labelledby="sortbtn">
+                    <a class="dropdown-item" id="nameASC">Name ASC</a>
+                    <a class="dropdown-item" id="nameDESC">Name DESC</a>
+                    <a class="dropdown-item" id="alcoholASC">Alcohol % ASC</a>
+                    <a class="dropdown-item" id="alcoholDESC">Alcohol % DESC</a>
+                    <a class="dropdown-item" id="bitternessASC">Bitterness ASC</a>
+                    <a class="dropdown-item" id="bitternessDESC">Bitterness DESC</a>
+                </div>
             </div>
         </div>
         

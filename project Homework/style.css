@@ -33,17 +33,36 @@
     width: 90%;
 }
 
-.dropdown{
+.dropdown-container {
     width: 90%;
-    margin: 60px auto;
 }
 
-#beersPerPagebtn{
-    margin-right: 20%;
+#beers{
+    margin-top: 50px;
 }
 
-#sortbtn{
-    margin-left: 20%;
+.d-flex{
+    margin-bottom: 50px;
+}
+.dropdown {
+    position: relative;
+    display: flex; /* Use flexbox to center the buttons */
+    justify-content: center; /* Center the buttons horizontally */
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#beersPerPagebtn {
+    margin-right: 40px; /* Optional: Add margin if needed */
+}
+
+#sortbtn {
+    margin-left: 40px; /* Optional: Add margin if needed */
 }
 
 .card-text {
