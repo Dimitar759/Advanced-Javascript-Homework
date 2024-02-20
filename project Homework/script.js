@@ -3,41 +3,32 @@ let toBeer = 5;
 let beerPage = 1;
 let beerContainer = document.getElementById('beerContainer');
 let userBeerPage = document.getElementById("beerPage");
-function fetchBeers() {
-    let allData = []; // Store all fetched data
-    let totalPages = 13; // Assuming there are 13 pages
+async function fetchBeers() {
+    let allData = []; 
+    let totalPages = 13; 
 
-    // Fetch data for each page
-    let fetchPromises = [];
-    for (let page = 1; page <= totalPages; page++) {
-        let url = `https://api.punkapi.com/v2/beers?page=${page}`;
-        fetchPromises.push(fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                allData.push(...data); // Append data from this page to allData
-            })
-            .catch(error => console.error('Error fetching data:', error))
-        );
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        getBeers(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
-
-    // Wait for all fetches to complete
-    Promise.all(fetchPromises)
-        .then(() => {
-            getBeers(allData); // Once all data is fetched, call getBeers
-    });
 }
 
 function getBeers(data) {
     
     beerContainer.innerHTML = "";
 
-    // Calculate starting index
     let startIndex = (beerPage - 1) * toBeer;
-    // Calculate ending index, ensuring it doesn't exceed the length of the data array
     let endIndex = Math.min(startIndex + toBeer, data.length);
 
     for (let i = startIndex; i < endIndex; i++) {
-        if (i % 5 === 0) { // Start a new row after every 5th beer
+        if (i % 5 === 0) { 
             var row = document.createElement('div');
             row.className = 'row mx-auto';
             beerContainer.appendChild(row);
@@ -102,7 +93,7 @@ let showTenBeers = document.getElementById("10");
 let showTwentyBeers = document.getElementById("20");
 
 showFiveBeers.addEventListener("click", function() {
-    beerPage = 1; // Reset beerPage to 1
+    beerPage = 1; 
     toBeer = 5;
     beerContainer.innerHTML = '';
     previousBtn.disabled = true; 
@@ -113,7 +104,7 @@ showFiveBeers.addEventListener("click", function() {
 });
 
 showTenBeers.addEventListener("click", function() {
-    beerPage = 1; // Reset beerPage to 1
+    beerPage = 1; 
     toBeer = 10;
     beerContainer.innerHTML = '';
     previousBtn.disabled = true; 
@@ -123,7 +114,7 @@ showTenBeers.addEventListener("click", function() {
 });
 
 showTwentyBeers.addEventListener("click", function() {
-    beerPage = 1; // Reset beerPage to 1
+    beerPage = 1;
     toBeer = 20;
     beerContainer.innerHTML = '';
     previousBtn.disabled = true;
