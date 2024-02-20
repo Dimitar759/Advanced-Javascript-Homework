@@ -2,6 +2,7 @@ let fromBeer = 0;
 let toBeer = 5;
 let beerPage = 1;
 let beerContainer = document.getElementById('beerContainer');
+let userBeerPage = document.getElementById("beerPage");
 function fetchBeers() {
     let allData = []; // Store all fetched data
     let totalPages = 13; // Assuming there are 13 pages
@@ -106,7 +107,9 @@ showFiveBeers.addEventListener("click", function() {
     beerContainer.innerHTML = '';
     previousBtn.disabled = true; 
     nextBtn.disabled = false;
+    userBeerPage.innerHTML = `Page ${beerPage}/65`
     fetchBeers();
+    
 });
 
 showTenBeers.addEventListener("click", function() {
@@ -115,6 +118,7 @@ showTenBeers.addEventListener("click", function() {
     beerContainer.innerHTML = '';
     previousBtn.disabled = true; 
     nextBtn.disabled = false;
+    userBeerPage.innerHTML = `Page ${beerPage}/33`
     fetchBeers();
 });
 
@@ -124,12 +128,14 @@ showTwentyBeers.addEventListener("click", function() {
     beerContainer.innerHTML = '';
     previousBtn.disabled = true;
     nextBtn.disabled = false;
+    userBeerPage.innerHTML = `Page ${beerPage}/17`
     fetchBeers();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     previousBtn.disabled = true; 
     nextBtn.disabled = false;
+    userBeerPage.innerHTML = `Page ${beerPage}/65`
     fetchBeers();
 });
 
@@ -144,11 +150,11 @@ previousBtn.addEventListener("click", function() {
     if (beerPage === 1) {
         previousBtn.disabled = true;
     }
+    updatePageCount(); 
     fetchBeers();
 });
 
 nextBtn.addEventListener("click", function() {
-
     if (toBeer === 20) {
         if (beerPage < 17) { 
             beerPage += 1;
@@ -157,6 +163,7 @@ nextBtn.addEventListener("click", function() {
         if (beerPage === 17) {
             nextBtn.disabled = true;
         }
+        updatePageCount(); 
         fetchBeers();
     }
 
@@ -168,6 +175,7 @@ nextBtn.addEventListener("click", function() {
         if (beerPage === 65) {
             nextBtn.disabled = true;
         }
+        updatePageCount(); 
         fetchBeers();
     }
 
@@ -179,9 +187,20 @@ nextBtn.addEventListener("click", function() {
         if (beerPage === 33) {
             nextBtn.disabled = true;
         }
+        updatePageCount(); 
         fetchBeers();
     }
-    
-    
-    
 });
+
+function updatePageCount() {
+    let pageCount;
+    if (toBeer === 5) {
+        pageCount = 65;
+    } else if (toBeer === 10) {
+        pageCount = 33;
+    } else if (toBeer === 20) {
+        pageCount = 17;
+    }
+    userBeerPage.innerHTML = `Page ${beerPage}/${pageCount}`; 
+}
+
