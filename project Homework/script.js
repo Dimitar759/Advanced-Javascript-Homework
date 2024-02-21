@@ -16,9 +16,25 @@ async function fetchBeers() {
             allData.push(...data); 
         }
         getBeers(allData);
+        console.log(allData);
+        const randomIndex = Math.floor(Math.random() * allData.length);
+        let randomBeer = allData[randomIndex];
+        console.log('Random beer:', randomBeer);
+        randomBeerGenerator(randomBeer);
+        
     } catch (error) {
         console.error('Error fetching data:', error);
     }
+}
+
+function randomBeerGenerator(beer){
+    let beerInfo = document.getElementsByClassName("beerInfo");
+    beerInfo.innerHTML = "";
+
+    let beerImg = document.getElementById("beerImage");
+    beerImg.innerHTML += `src="${beer.image_url}" alt="${beer.name}"`
+
+
 }
 
 function getBeers(data) {
@@ -60,14 +76,14 @@ function getBeers(data) {
         description.className = 'card-text';
         description.textContent = beer.description;
 
-        const button = document.createElement('a');
-        button.href = '#';
-        button.className = 'btn btn-primary';
-        button.textContent = 'More Info';
+        const buttonDescription = document.createElement('a');
+        buttonDescription.href = '#';
+        buttonDescription.className = 'btn btn-primary';
+        buttonDescription.textContent = 'More Info';
 
         cardBody.appendChild(title);
         cardBody.appendChild(description);
-        cardBody.appendChild(button);
+        cardBody.appendChild(buttonDescription);
 
         card.appendChild(img);
         card.appendChild(cardBody);
@@ -79,7 +95,7 @@ function getBeers(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const beersLink = document.querySelector('.nav-link[href="#beers"]');
+    const beersLink = document.getElementById('beerS');
     const beersSection = document.getElementById('beers');
 
     beersLink.addEventListener('click', function(event) {
@@ -101,8 +117,6 @@ showFiveBeers.addEventListener("click", function() {
     nextBtn.disabled = false;
     userBeerPage.innerHTML = `Page ${beerPage}/65`
     fetchBeers();
-    
-
 });
 
 showTenBeers.addEventListener("click", function() {
@@ -371,3 +385,4 @@ function sortingOrder(){
         fetchBeers();
     }
 }
+
