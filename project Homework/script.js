@@ -31,15 +31,18 @@ async function loadRandomBeer() {
         let randomBeer = data[0];
         console.log(randomBeer);
 
-        let randomBeerDiv = document.getElementById('randomBeer');
+        let randomBeerImg = document.getElementById('randomBeerImg');
+        let randomBeerDiv = document.getElementById('randomBeerInfo');
 
         if(randomBeer.image_url !== null){
+            randomBeerImg.innerHTML = `
+            <img src="${randomBeer.image_url}" alt="${randomBeer.name}" style="max-width: 100px;">`
             randomBeerDiv.innerHTML = `
-            <img src="${randomBeer.image_url}" alt="${randomBeer.name}" style="max-width: 100px;">
             <p>${randomBeer.name}</p>`;
         }else if (randomBeer.image_url === null){
-            randomBeerDiv.innerHTML = 
-            `<img src="notfoundImg.jpg" alt="${randomBeer.name}" style="max-width: 100px;">
+            randomBeerImg.innerHTML = 
+            `<img src="notfoundImg.jpg" alt="${randomBeer.name}" style="max-width: 100px;">`
+            randomBeerDiv.innerHTML = `
             <p>${randomBeer.name}</p>`;
         }
         
