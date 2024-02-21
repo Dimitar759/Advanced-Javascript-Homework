@@ -17,24 +17,35 @@ async function fetchBeers() {
         }
         getBeers(allData);
         console.log(allData);
-        const randomIndex = Math.floor(Math.random() * allData.length);
-        let randomBeer = allData[randomIndex];
-        console.log('Random beer:', randomBeer);
-        randomBeerGenerator(randomBeer);
+        
         
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
 
-function randomBeerGenerator(beer){
-    let beerInfo = document.getElementsByClassName("beerInfo");
-    beerInfo.innerHTML = "";
+async function loadRandomBeer() {
+    try {
+        let response = await fetch('https://api.punkapi.com/v2/beers/random');
+        let data = await response.json();
+        let randomBeer = data[0];
+        console.log(randomBeer);
 
-    let beerImg = document.getElementById("beerImage");
-    beerImg.innerHTML += `src="${beer.image_url}" alt="${beer.name}"`
+        let randomBeerDiv = document.getElementById('randomBeer');
 
-
+        if(randomBeer.image_url !== null){
+            randomBeerDiv.innerHTML = `
+            <img src="${randomBeer.image_url}" alt="${randomBeer.name}" style="max-width: 100px;">
+            <p>${randomBeer.name}</p>`;
+        }else if (randomBeer.image_url === null){
+            randomBeerDiv.innerHTML = 
+            `<img src="notfoundImg.jpg" alt="${randomBeer.name}" style="max-width: 100px;">
+            <p>${randomBeer.name}</p>`;
+        }
+        
+    } catch (error) {
+        console.error('Error fetching random beer:', error);
+    }
 }
 
 function getBeers(data) {
@@ -143,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
     previousBtn.disabled = true; 
     nextBtn.disabled = false;
     userBeerPage.innerHTML = `Page ${beerPage}/65`
-    fetchBeers()
+    fetchBeers();
+    loadRandomBeer();
     
 });
 
