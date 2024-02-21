@@ -3,6 +3,7 @@ let toBeer = 5;
 let beerPage = 1;
 let beerContainer = document.getElementById('beerContainer');
 let userBeerPage = document.getElementById("beerPage");
+let sortOrder = "";
 async function fetchBeers() {
     let allData = []; 
     let totalPages = 13; 
@@ -101,6 +102,7 @@ showFiveBeers.addEventListener("click", function() {
     userBeerPage.innerHTML = `Page ${beerPage}/65`
     fetchBeers();
     
+
 });
 
 showTenBeers.addEventListener("click", function() {
@@ -109,7 +111,7 @@ showTenBeers.addEventListener("click", function() {
     beerContainer.innerHTML = '';
     previousBtn.disabled = true; 
     nextBtn.disabled = false;
-    userBeerPage.innerHTML = `Page ${beerPage}/33`
+    userBeerPage.innerHTML = `Page ${beerPage}/33`;
     fetchBeers();
 });
 
@@ -127,13 +129,15 @@ document.addEventListener('DOMContentLoaded', function() {
     previousBtn.disabled = true; 
     nextBtn.disabled = false;
     userBeerPage.innerHTML = `Page ${beerPage}/65`
-    fetchBeers();
+    fetchBeers()
+    
 });
 
 let previousBtn = document.getElementById("previous");
 let nextBtn = document.getElementById("next");
 
 previousBtn.addEventListener("click", function() {
+
     if (beerPage > 1) {
         beerPage -= 1;
         nextBtn.disabled = false; 
@@ -142,7 +146,8 @@ previousBtn.addEventListener("click", function() {
         previousBtn.disabled = true;
     }
     updatePageCount(); 
-    fetchBeers();
+    sortingOrder();
+    
 });
 
 nextBtn.addEventListener("click", function() {
@@ -155,7 +160,8 @@ nextBtn.addEventListener("click", function() {
             nextBtn.disabled = true;
         }
         updatePageCount(); 
-        fetchBeers();
+        sortingOrder();
+        
     }
 
     if (toBeer === 5) {
@@ -167,7 +173,8 @@ nextBtn.addEventListener("click", function() {
             nextBtn.disabled = true;
         }
         updatePageCount(); 
-        fetchBeers();
+        sortingOrder();
+        
     }
 
     if (toBeer === 10) {
@@ -179,7 +186,7 @@ nextBtn.addEventListener("click", function() {
             nextBtn.disabled = true;
         }
         updatePageCount(); 
-        fetchBeers();
+        sortingOrder()
     }
 });
 
@@ -195,3 +202,172 @@ function updatePageCount() {
     userBeerPage.innerHTML = `Page ${beerPage}/${pageCount}`; 
 }
 
+let nameASC = document.getElementById("nameASC");
+let nameDESC = document.getElementById("nameDESC");
+let alcoholASC = document.getElementById("alcoholASC");
+let alcoholDESC = document.getElementById("alcoholDESC");
+let bitternessASC = document.getElementById("bitternessASC");
+let bitternessDESC = document.getElementById("bitternessDESC");
+
+nameASC.addEventListener("click",function(){
+    sortOrder = "nameAsc"
+    getNameASCBeers()
+    
+})
+
+async function getNameASCBeers() {
+    let allData = []; 
+    let totalPages = 13; 
+
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        allData.sort((a, b) => a.name.localeCompare(b.name));
+        getBeers(allData);
+        console.log(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+nameDESC.addEventListener("click",function(){
+    sortOrder = "nameDesc"
+    getNameDescBeers()
+})
+
+async function getNameDescBeers() {
+    let allData = []; 
+    let totalPages = 13; 
+
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        allData.sort((a, b) => b.name.localeCompare(a.name));
+        getBeers(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+alcoholASC.addEventListener("click",function(){
+    sortOrder = "alcoholASC"
+    getAlcoholASC()
+    
+})
+
+async function getAlcoholASC() {
+    let allData = []; 
+    let totalPages = 13; 
+
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        allData.sort((a, b) => a.abv - b.abv);
+        getBeers(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+alcoholDESC.addEventListener("click",function(){
+    sortOrder = "alcoholDESC"
+    getAlcoholDESC()
+    
+})
+
+async function getAlcoholDESC() {
+    let allData = []; 
+    let totalPages = 13; 
+
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        allData.sort((a, b) => b.abv - a.abv);
+        getBeers(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+bitternessASC.addEventListener("click",function(){
+    sortOrder = "bitternessASC"
+    getBitternessASC()
+    
+})
+
+async function getBitternessASC() {
+    let allData = []; 
+    let totalPages = 13; 
+
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        allData.sort((a, b) => a.ibu - b.ibu);
+        getBeers(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+
+bitternessDESC.addEventListener("click",function(){
+    sortOrder = "bitternessDESC"
+    getBitternessDESC()
+    
+})
+
+async function getBitternessDESC() {
+    let allData = []; 
+    let totalPages = 13; 
+
+    try {
+        for (let page = 1; page <= totalPages; page++) {
+            let url = `https://api.punkapi.com/v2/beers?page=${page}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            allData.push(...data); 
+        }
+        allData.sort((a, b) => b.ibu - a.ibu);
+        getBeers(allData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+function sortingOrder(){
+    if (sortOrder === "nameAsc") {
+        getNameASCBeers();
+    } else if (sortOrder === "nameDesc") {
+        getNameDescBeers();
+    } else if (sortOrder === "alcoholASC") {
+        getAlcoholASC();
+    } else if (sortOrder === "alcoholDESC") {
+        getAlcoholDESC();
+    } else if (sortOrder === "bitternessASC") {
+        getBitternessASC(); 
+    } else if (sortOrder === "bitternessDESC") {
+        getBitternessDESC(); 
+    } else {
+        fetchBeers();
+    }
+}
