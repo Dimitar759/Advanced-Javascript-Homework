@@ -4,50 +4,22 @@ let beerPage = 1;
 let beerContainer = document.getElementById('beerContainer');
 let userBeerPage = document.getElementById("beerPage");
 let sortOrder = "";
+let arrayOfAllBeerObjects = [];
+
 async function fetchBeers() {
-    let allData = []; 
-    let totalPages = 13; 
+    let totalPages = 13;
 
     try {
         for (let page = 1; page <= totalPages; page++) {
             let url = `https://api.punkapi.com/v2/beers?page=${page}`;
             let response = await fetch(url);
             let data = await response.json();
-            allData.push(...data); 
+            arrayOfAllBeerObjects.push(...data); 
         }
-        getBeers(allData);
-        console.log(allData);
-        
-        
+        getBeers(arrayOfAllBeerObjects);
+        console.log(arrayOfAllBeerObjects);
     } catch (error) {
         console.error('Error fetching data:', error);
-    }
-}
-
-async function loadRandomBeer() {
-    try {
-        let response = await fetch('https://api.punkapi.com/v2/beers/random');
-        let data = await response.json();
-        let randomBeer = data[0];
-        console.log(randomBeer);
-
-        let randomBeerImg = document.getElementById('randomBeerImg');
-        let randomBeerDiv = document.getElementById('randomBeerInfo');
-
-        if(randomBeer.image_url !== null){
-            randomBeerImg.innerHTML = `
-            <img src="${randomBeer.image_url}" alt="${randomBeer.name}" style="max-width: 100px;">`
-            randomBeerDiv.innerHTML = `
-            <p>${randomBeer.name}</p>`;
-        }else if (randomBeer.image_url === null){
-            randomBeerImg.innerHTML = 
-            `<img src="notfoundImg.jpg" alt="${randomBeer.name}" style="max-width: 100px;">`
-            randomBeerDiv.innerHTML = `
-            <p>${randomBeer.name}</p>`;
-        }
-        
-    } catch (error) {
-        console.error('Error fetching random beer:', error);
     }
 }
 
@@ -92,8 +64,20 @@ function getBeers(data) {
 
         const buttonDescription = document.createElement('a');
         buttonDescription.href = '#';
-        buttonDescription.className = 'btn btn-primary';
+        buttonDescription.className = 'btn btn-primary more-info-btn';
         buttonDescription.textContent = 'More Info';
+
+        buttonDescription.addEventListener('click', function(event) {
+            event.preventDefault();
+            let beerIndex = i;
+            if (!isNaN(beerIndex)) {
+                const beer = arrayOfAllBeerObjects[beerIndex];
+                loadClickedBeer(beer);
+            }
+            
+            let beerSection = document.getElementById("beerInfo");
+            beerSection.scrollIntoView({ behavior: 'smooth' });
+        });
 
         cardBody.appendChild(title);
         cardBody.appendChild(description);
@@ -401,3 +385,121 @@ function sortingOrder(){
     }
 }
 
+async function loadRandomBeer() {
+    try {
+        let response = await fetch('https://api.punkapi.com/v2/beers/random');
+        let data = await response.json();
+        let beer = data[0];
+        console.log(beer);
+        loadClickedBeer(beer);
+
+    } catch (error) {
+        console.error('Error fetching random beer:', error);
+    }
+}
+
+
+async function loadClickedBeer(beer) {
+    try {
+        let randomBeerImg = document.getElementById('randomBeerImg');
+        let randomBeerInfo = document.getElementById('randomBeerInfo');
+
+        randomBeerImg.innerHTML = '';
+        randomBeerInfo.innerHTML = '';
+
+        let table = document.createElement("table");
+        table.style.border = "1px solid black";
+        table.style.width = "400px";
+        table.style.marginLeft = "30%";
+
+        let tblBody = document.createElement("tbody");
+
+        let nameRow = document.createElement("tr");
+        nameRow.style.border = "1px solid black";
+        nameRow.style.backgroundColor = "rgb(234, 234, 234)";
+
+        let nameCell = document.createElement("td");
+        nameCell.style.padding = "20px"
+        let nameCellText = document.createElement('strong');
+        nameCellText.textContent = beer.name;
+        nameCell.appendChild(nameCellText);
+        nameRow.appendChild(nameCell);
+        tblBody.appendChild(nameRow);
+
+        nameCell.appendChild(document.createElement('br'));
+
+        let nameCellTagline = document.createTextNode(`${beer.tagline}`);
+        nameCell.appendChild(nameCellTagline);
+        nameRow.appendChild(nameCell);
+        tblBody.appendChild(nameRow);
+
+
+        let descriptionRow = document.createElement("tr");
+        let descriptionCell = document.createElement("td");
+        descriptionCell.style.padding = "20px"
+        let descriptionCellText = document.createElement('span');
+        descriptionCellText.textContent = `${beer.description}`;
+        descriptionCell.appendChild(descriptionCellText);
+
+        descriptionCell.appendChild(document.createElement('br'));
+        descriptionCell.appendChild(document.createElement('br'));
+
+        let brewedTextNode = document.createElement('span');
+        brewedTextNode.textContent = `Brewed: ${beer.first_brewed}%`;
+        descriptionCell.appendChild(brewedTextNode);
+
+        descriptionCell.appendChild(document.createElement('br'));
+
+        let abvTextNode = document.createElement('span');
+        abvTextNode.textContent = `Alcohol: ${beer.abv}%`;
+        descriptionCell.appendChild(abvTextNode);
+
+        descriptionCell.appendChild(document.createElement('br'));
+
+        let ibuTextNode = document.createElement('span');
+        ibuTextNode.textContent = `Bitterness: ${beer.ibu}`;
+        descriptionCell.appendChild(ibuTextNode);
+       
+        descriptionCell.appendChild(document.createElement('br'));
+        descriptionCell.appendChild(document.createElement('br'));
+
+        let foodPairingText = document.createElement('strong');
+        foodPairingText.textContent = `Food pairing`;
+        foodPairingText.style.fontSize = "larger"
+        foodPairingText.style.fontSize = "larger"
+        descriptionCell.appendChild(foodPairingText);
+
+        descriptionCell.appendChild(document.createElement('br'));
+
+        descriptionRow.appendChild(descriptionCell);
+        tblBody.appendChild(descriptionRow);
+
+        for (let f = 0; f < beer.food_pairing.length; f++) {
+            let foodPairingRow = document.createElement("tr");
+            let foodPairingCell = document.createElement("td");
+
+            let foodPairingDiv = document.createElement("div");
+            foodPairingDiv.style.margin = "0px 20px 5px 20px"; 
+        
+            let foodPairingCellText = document.createTextNode((f + 1) + ". " +beer.food_pairing[f]);
+
+            foodPairingDiv.appendChild(foodPairingCellText);
+            foodPairingCell.appendChild(foodPairingDiv);
+            foodPairingRow.appendChild(foodPairingCell);
+            tblBody.appendChild(foodPairingRow);
+        }
+
+        table.appendChild(tblBody);
+
+        randomBeerInfo.appendChild(table);
+
+        if (beer.image_url !== null) {
+            randomBeerImg.innerHTML = `<img src="${beer.image_url}" alt="${beer.name}" style="max-width: 150px;">`;
+        } else {
+            randomBeerImg.innerHTML = `<img src="notfoundImg.jpg" alt="${beer.name}" style="max-width: 150px;">`;
+        }
+
+    } catch (error) {
+        console.error('Error loading clicked beer:', error);
+    }
+}

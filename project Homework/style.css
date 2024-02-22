@@ -56,11 +56,11 @@
 }
 
 #beersPerPagebtn {
-    margin-right: 40px; /* Optional: Add margin if needed */
+    margin-right: 40px; 
 }
 
 #sortbtn {
-    margin-left: 40px; /* Optional: Add margin if needed */
+    margin-left: 40px; 
 }
 
 
@@ -69,7 +69,6 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    /* truncate to 4 lines */
     -webkit-line-clamp: 4;
 }
   
