@@ -513,25 +513,24 @@ async function loadClickedBeer(beer) {
     }
 }
 
-let inputTextField = document.getElementById('inputText');
-let submitBtn = document.getElementById('submitBtn');
-
-submitBtn.addEventListener("click", async function() {
-    let inputtedText = inputTextField.value;
-    await findBeer(inputtedText);
+let userInputField = document.getElementById('usersInput');
+let searchButton = document.getElementById('submitBtn');
+searchButton.addEventListener("click", async function(event) {
+    event.preventDefault(); 
+    let userInput = userInputField.value;
+    await fetchBeerData(userInput);
     let beerSection = document.getElementById("beerInfo");
     beerSection.scrollIntoView({ behavior: 'smooth' });
 });
 
-async function findBeer(beerName) {
+async function fetchBeerData(beerName) {
     try {
         let response = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`);
         let data = await response.json();
         if (data.length > 0) {
-
             loadClickedBeer(data[0]);
         } else {
-            print('Beer not found');
+            console.log('Beer not found');
         }
     } catch (error) {
         console.error('Error fetching beer:', error);
