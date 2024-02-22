@@ -103,6 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+let randomBeerNavBtn = document.getElementById("randomBeer");
+randomBeerNavBtn.addEventListener("click",function(event){
+    loadRandomBeer();
+    event.preventDefault();
+    
+    let beerSection = document.getElementById("beerInfo");
+    beerSection.scrollIntoView({ behavior: 'smooth' });
+})
+
 let showFiveBeers = document.getElementById("5");
 let showTenBeers = document.getElementById("10");
 let showTwentyBeers = document.getElementById("20");
@@ -504,11 +513,3 @@ async function loadClickedBeer(beer) {
     }
 }
 
-let randomBeerNavBtn = document.getElementById("randomBeer");
-randomBeerNavBtn.addEventListener("click",function(event){
-    loadRandomBeer();
-    event.preventDefault();
-    
-    let beerSection = document.getElementById("beerInfo");
-    beerSection.scrollIntoView({ behavior: 'smooth' });
-})
