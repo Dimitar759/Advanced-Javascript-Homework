@@ -503,3 +503,12 @@ async function loadClickedBeer(beer) {
         console.error('Error loading clicked beer:', error);
     }
 }
+
+let randomBeerNavBtn = document.getElementById("randomBeer");
+randomBeerNavBtn.addEventListener("click",function(event){
+    loadRandomBeer();
+    event.preventDefault();
+    
+    let beerSection = document.getElementById("beerInfo");
+    beerSection.scrollIntoView({ behavior: 'smooth' });
+})
