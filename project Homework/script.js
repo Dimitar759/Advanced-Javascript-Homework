@@ -112,6 +112,14 @@ randomBeerNavBtn.addEventListener("click",function(event){
     beerSection.scrollIntoView({ behavior: 'smooth' });
 })
 
+let beerBarNavBtn = document.getElementById("beerBar");
+beerBarNavBtn.addEventListener("click",function(event){
+    event.preventDefault();
+    
+    let beerSection = document.getElementById("beerBar");
+    beerSection.scrollIntoView({ behavior: 'smooth' });
+})
+
 let showFiveBeers = document.getElementById("5");
 let showTenBeers = document.getElementById("10");
 let showTwentyBeers = document.getElementById("20");
@@ -454,7 +462,7 @@ async function loadClickedBeer(beer) {
         descriptionCell.appendChild(document.createElement('br'));
 
         let brewedTextNode = document.createElement('span');
-        brewedTextNode.textContent = `Brewed: ${beer.first_brewed}%`;
+        brewedTextNode.textContent = `Brewed: ${beer.first_brewed}`;
         descriptionCell.appendChild(brewedTextNode);
 
         descriptionCell.appendChild(document.createElement('br'));
@@ -513,3 +521,27 @@ async function loadClickedBeer(beer) {
     }
 }
 
+let inputTextField = document.getElementById('inputText');
+let submitBtn = document.getElementById('submitBtn');
+
+submitBtn.addEventListener("click", async function() {
+    let inputtedText = inputTextField.value;
+    await findBeer(inputtedText);
+    let beerSection = document.getElementById("beerInfo");
+    beerSection.scrollIntoView({ behavior: 'smooth' });
+});
+
+async function findBeer(beerName) {
+    try {
+        let response = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`);
+        let data = await response.json();
+        if (data.length > 0) {
+
+            loadClickedBeer(data[0]);
+        } else {
+            print('Beer not found');
+        }
+    } catch (error) {
+        console.error('Error fetching beer:', error);
+    }
+}
