@@ -112,14 +112,6 @@ randomBeerNavBtn.addEventListener("click",function(event){
     beerSection.scrollIntoView({ behavior: 'smooth' });
 })
 
-let beerBarNavBtn = document.getElementById("beerBar");
-beerBarNavBtn.addEventListener("click",function(event){
-    event.preventDefault();
-    
-    let beerSection = document.getElementById("beerBar");
-    beerSection.scrollIntoView({ behavior: 'smooth' });
-})
-
 let showFiveBeers = document.getElementById("5");
 let showTenBeers = document.getElementById("10");
 let showTwentyBeers = document.getElementById("20");
