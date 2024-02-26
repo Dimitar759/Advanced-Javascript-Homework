@@ -542,3 +542,5 @@ async function fetchBeerData(beerName) {
         console.error('Error fetching beer:', error);
     }
 }
+
+
